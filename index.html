@@ -18,7 +18,24 @@
   <div id="welcome-page">
     <h1>Welcome to FitSync</h1>
     <p class="tagline">Track your fitness journey with ease</p>
-    <button class="btn" onclick="nextPage('name-page')">Enter</button>
+    <button class="btn" onclick="nextPage('signup-page')">Enter</button>
+  </div>
+
+  <!-- Sign Up Page -->
+  <div id="signup-page" class="hidden">
+    <h1>Create Your Account</h1>
+    <input type="text" id="signup-username" placeholder="Enter username" />
+    <input type="password" id="signup-password" placeholder="Enter password" />
+    <button class="btn" onclick="createAccount()">Sign Up</button>
+    <p>Already have an account? <span onclick="nextPage('login-page')" class="link">Log In</span></p>
+  </div>
+
+  <!-- Login Page -->
+  <div id="login-page" class="hidden">
+    <h1>Welcome Back!</h1>
+    <input type="text" id="login-username" placeholder="Enter username" />
+    <input type="password" id="login-password" placeholder="Enter password" />
+    <button class="btn" onclick="login()">Log In</button>
   </div>
 
   <!-- Name Page -->
@@ -75,41 +92,43 @@
       <option value="muscle-gain">Muscle Gain</option>
       <option value="healthy-skin">Healthy Skin</option>
     </select>
-    <div id="goal-images">
-      <img src="weight-loss.jpg" alt="Weight Loss" />
-      <img src="weight-gain.jpg" alt="Weight Gain" />
-      <img src="muscle-gain.jpg" alt="Muscle Gain" />
-      <img src="healthy-skin.jpg" alt="Healthy Skin" />
-    </div>
     <button class="btn" onclick="nextPage('routine-page')">Next</button>
   </div>
 
   <!-- Daily Routine Page -->
   <div id="routine-page" class="hidden">
     <h1>Track your daily routine</h1>
-    <label>Water Intake (liters)</label>
-    <input type="number" id="water" placeholder="Enter water intake" />
-    <label>Exercise Time (minutes)</label>
-    <input type="number" id="exercise" placeholder="Enter exercise time" />
-    <label>Calories Consumed</label>
-    <input type="number" id="calories" placeholder="Enter calories consumed" />
-    <label>Steps Walked</label>
-    <input type="number" id="steps" placeholder="Enter steps walked" />
+    <input type="number" id="water" placeholder="Water Intake (liters)" />
+    <input type="number" id="exercise" placeholder="Exercise Time (minutes)" />
+    <input type="number" id="calories" placeholder="Calories Consumed" />
+    <input type="number" id="steps" placeholder="Steps Walked" />
     <button class="btn" onclick="submitInfo()">Submit</button>
   </div>
 
-  <!-- Final Plan Page -->
+  <!-- Goal Result Page -->
+  <div id="congrats-page" class="hidden">
+    <h1 id="congrats-message"></h1>
+    <button class="btn" onclick="nextPage('plan-page')">Next</button>
+  </div>
+
+  <!-- Plan Page -->
   <div id="plan-page" class="hidden">
-    <h1>Thanks for sharing your info!</h1>
-    <h2>Here's your plan:</h2>
+    <h1>Here's your plan for tomorrow:</h1>
     <ul>
       <li>Breakfast: Oats with fruits and chia seeds</li>
       <li>Lunch: Grilled chicken with mixed salad</li>
       <li>Snack: Almonds or a protein bar</li>
+      <li>Evening Snack: Green smoothie or Greek yogurt</li>
       <li>Dinner: Steamed veggies with quinoa or brown rice</li>
       <li>Exercise: 30 mins of cardio 3x a week</li>
     </ul>
-    <p id="goal-message"></p>
+    <button class="btn" onclick="nextPage('thankyou-page')">Next</button>
+  </div>
+
+  <!-- Final Thank You Page -->
+  <div id="thankyou-page" class="hidden">
+    <h1>Thank you for sharing your info!</h1>
+    <p>More progress tracking features coming soon.</p>
     <button class="btn" onclick="restart()">Start Over</button>
   </div>
 
