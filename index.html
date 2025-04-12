@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FitSync</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <img src="fitsync-logo.png" alt="FitSync Logo" class="logo">
-    <h1>Welcome to FitSync</h1>
+    <img src="fitsync-logo.png" alt="FitSync Logo" class="logo" />
+    <h1 class="bold-text">Welcome to FitSync</h1>
     <p class="tagline">Track your fitness journey with ease</p>
-    <p class="subtext">More features coming soon...</p>
+    <button onclick="nextStep()">Enter</button>
   </div>
+  
+  <div class="form-container" style="display: none;">
+    <p id="question" class="big-text"></p>
+    <input type="text" id="inputField" placeholder="Type here" />
+    <select id="dropdown" style="display: none;"></select>
+    <button onclick="handleNext()">Next</button>
+    <p id="message" class="alert-message"></p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
