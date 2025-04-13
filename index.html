@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitSync - Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Welcome Page -->
+  <div id="welcome-page" class="page">
+    <div class="box">
+      <h1>Welcome to FitSync</h1>
+      <p class="tagline">Track your fitness journey with ease</p>
+      <button class="btn" onclick="nextPage('signup-page')">Enter</button>
+    </div>
+  </div>
+
+  <!-- Signup Page -->
+  <div id="signup-page" class="page hidden">
+    <h1>Create Your Account</h1>
+    <input type="text" id="signup-name" placeholder="Name" />
+    <input type="email" id="signup-email" placeholder="Email" />
+    <input type="password" id="signup-password" placeholder="Password" />
+    <button class="btn" onclick="nextPage('age-page')">Next</button>
+  </div>
+
+  <!-- Age Page -->
+  <div id="age-page" class="page hidden">
+    <h1>What's your age?</h1>
+    <input type="number" id="age-input" placeholder="Enter your age" />
+    <button class="btn" onclick="validateAge()">Next</button>
+  </div>
+
+  <div id="underage-page" class="page hidden">
+    <h1>Sorry!</h1>
+    <p>You must be 18 or older to use this app.</p>
+  </div>
+
+  <!-- Gender -->
+  <div id="gender-page" class="page hidden">
+    <h1>Select your gender</h1>
+    <select id="gender-select">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <button class="btn" onclick="nextPage('metrics-page')">Next</button>
+  </div>
+
+  <!-- Weight/Height -->
+  <div id="metrics-page" class="page hidden">
+    <h1>Your Body Stats</h1>
+    <input type="number" id="weight-input" placeholder="Weight (kg)" />
+    <input type="number" id="height-input" placeholder="Height (cm)" />
+    <button class="btn" onclick="nextPage('goal-page')">Next</button>
+  </div>
+
+  <!-- Fitness Goal -->
+  <div id="goal-page" class="page hidden">
+    <h1>Your Fitness Goal</h1>
+    <select id="fitness-goal-select">
+      <option value="weight-loss">Weight Loss</option>
+      <option value="weight-gain">Weight Gain</option>
+      <option value="muscle-gain">Muscle Gain</option>
+      <option value="healthy-skin">Healthy Skin</option>
+    </select>
+    <button class="btn" onclick="nextPage('routine-page')">Next</button>
+  </div>
+
+  <!-- Daily Input -->
+  <div id="routine-page" class="page hidden">
+    <h1>Track Your Day</h1>
+    <input type="number" id="water" placeholder="Water Intake (liters)" />
+    <input type="number" id="exercise" placeholder="Exercise Time (minutes)" />
+    <input type="number" id="calories" placeholder="Calories Consumed" />
+    <input type="number" id="steps" placeholder="Steps Walked" />
+    <button class="btn" onclick="submitInfo()">Submit</button>
+  </div>
+
+  <!-- Feedback Page -->
+  <div id="feedback-page" class="page hidden">
+    <h1 id="feedback-title"></h1>
+    <p id="feedback-message"></p>
+    <button class="btn" onclick="nextPage('plan-page')">Next</button>
+  </div>
+
+  <!-- Plan Page -->
+  <div id="plan-page" class="page hidden">
+    <h1>Here's your personalized plan</h1>
+    <ul>
+      <li>Breakfast: Smoothie with oats, banana & almond milk</li>
+      <li>Lunch: Grilled tofu/chicken with quinoa salad</li>
+      <li>Snack: Greek yogurt or nuts</li>
+      <li>Dinner: Steamed veggies + lentil soup</li>
+      <li>Evening Walk: 30 minutes brisk walk</li>
+    </ul>
+    <button class="btn" onclick="nextPage('summary-page')">Next</button>
+  </div>
+
+  <!-- Summary Page -->
+  <div id="summary-page" class="page hidden">
+    <h1>Your Summary Dashboard</h1>
+    <canvas id="weeklyGraph" width="300" height="200"></canvas>
+    <div class="circle-container">
+      <div class="circle" id="water-ring"><span>Water</span></div>
+      <div class="circle" id="calories-ring"><span>Calories</span></div>
+      <div class="circle" id="exercise-ring"><span>Exercise</span></div>
+    </div>
+    <p class="bpm">Heart BPM: <span id="bpm">78</span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
