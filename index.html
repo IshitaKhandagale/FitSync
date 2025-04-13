@@ -5,87 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FitSync - Fitness Tracker</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Logo -->
-  <div id="logo-container">
-    <img src="fitsync-logo.png" alt="FitSync Logo" id="logo" />
-  </div>
-
   <!-- Welcome Page -->
-  <div id="welcome-page">
-    <h1>Welcome to FitSync</h1>
-    <p class="tagline">Track your fitness journey with ease</p>
-    <button class="btn" onclick="nextPage('signup-page')">Enter</button>
+  <div id="welcome-page" class="page">
+    <div class="box">
+      <h1>Welcome to FitSync</h1>
+      <p class="tagline">Track your fitness journey with ease</p>
+      <button class="btn" onclick="nextPage('signup-page')">Enter</button>
+    </div>
   </div>
 
-  <!-- Sign Up Page -->
-  <div id="signup-page" class="hidden">
+  <!-- Signup Page -->
+  <div id="signup-page" class="page hidden">
     <h1>Create Your Account</h1>
-    <input type="text" id="signup-username" placeholder="Enter username" />
-    <input type="password" id="signup-password" placeholder="Enter password" />
-    <button class="btn" onclick="createAccount()">Sign Up</button>
-    <p>Already have an account? <span onclick="nextPage('login-page')" class="link">Log In</span></p>
-  </div>
-
-  <!-- Login Page -->
-  <div id="login-page" class="hidden">
-    <h1>Welcome Back!</h1>
-    <input type="text" id="login-username" placeholder="Enter username" />
-    <input type="password" id="login-password" placeholder="Enter password" />
-    <button class="btn" onclick="login()">Log In</button>
-  </div>
-
-  <!-- Name Page -->
-  <div id="name-page" class="hidden">
-    <h1>Hi, hope you're having a nice day! What can I call you?</h1>
-    <input type="text" id="name-input" placeholder="Enter your name" />
+    <input type="text" id="signup-name" placeholder="Name" />
+    <input type="email" id="signup-email" placeholder="Email" />
+    <input type="password" id="signup-password" placeholder="Password" />
     <button class="btn" onclick="nextPage('age-page')">Next</button>
   </div>
 
   <!-- Age Page -->
-  <div id="age-page" class="hidden">
+  <div id="age-page" class="page hidden">
     <h1>What's your age?</h1>
     <input type="number" id="age-input" placeholder="Enter your age" />
     <button class="btn" onclick="validateAge()">Next</button>
   </div>
 
-  <!-- Underage Page -->
-  <div id="underage-page" class="hidden">
+  <div id="underage-page" class="page hidden">
     <h1>Sorry!</h1>
     <p>You must be 18 or older to use this app.</p>
   </div>
 
-  <!-- Gender Page -->
-  <div id="gender-page" class="hidden">
+  <!-- Gender -->
+  <div id="gender-page" class="page hidden">
     <h1>Select your gender</h1>
     <select id="gender-select">
       <option value="male">Male</option>
       <option value="female">Female</option>
       <option value="other">Other</option>
     </select>
-    <button class="btn" onclick="nextPage('weight-page')">Next</button>
+    <button class="btn" onclick="nextPage('metrics-page')">Next</button>
   </div>
 
-  <!-- Weight Page -->
-  <div id="weight-page" class="hidden">
-    <h1>What's your weight (in kg)?</h1>
-    <input type="number" id="weight-input" placeholder="Enter your weight" />
-    <button class="btn" onclick="nextPage('height-page')">Next</button>
-  </div>
-
-  <!-- Height Page -->
-  <div id="height-page" class="hidden">
-    <h1>What's your height (in cm)?</h1>
-    <input type="number" id="height-input" placeholder="Enter your height" />
+  <!-- Weight/Height -->
+  <div id="metrics-page" class="page hidden">
+    <h1>Your Body Stats</h1>
+    <input type="number" id="weight-input" placeholder="Weight (kg)" />
+    <input type="number" id="height-input" placeholder="Height (cm)" />
     <button class="btn" onclick="nextPage('goal-page')">Next</button>
   </div>
 
-  <!-- Fitness Goal Page -->
-  <div id="goal-page" class="hidden">
-    <h1>Select your fitness goal</h1>
+  <!-- Fitness Goal -->
+  <div id="goal-page" class="page hidden">
+    <h1>Your Fitness Goal</h1>
     <select id="fitness-goal-select">
       <option value="weight-loss">Weight Loss</option>
       <option value="weight-gain">Weight Gain</option>
@@ -95,9 +71,9 @@
     <button class="btn" onclick="nextPage('routine-page')">Next</button>
   </div>
 
-  <!-- Daily Routine Page -->
-  <div id="routine-page" class="hidden">
-    <h1>Track your daily routine</h1>
+  <!-- Daily Input -->
+  <div id="routine-page" class="page hidden">
+    <h1>Track Your Day</h1>
     <input type="number" id="water" placeholder="Water Intake (liters)" />
     <input type="number" id="exercise" placeholder="Exercise Time (minutes)" />
     <input type="number" id="calories" placeholder="Calories Consumed" />
@@ -105,31 +81,36 @@
     <button class="btn" onclick="submitInfo()">Submit</button>
   </div>
 
-  <!-- Goal Result Page -->
-  <div id="congrats-page" class="hidden">
-    <h1 id="congrats-message"></h1>
+  <!-- Feedback Page -->
+  <div id="feedback-page" class="page hidden">
+    <h1 id="feedback-title"></h1>
+    <p id="feedback-message"></p>
     <button class="btn" onclick="nextPage('plan-page')">Next</button>
   </div>
 
   <!-- Plan Page -->
-  <div id="plan-page" class="hidden">
-    <h1>Here's your plan for tomorrow:</h1>
+  <div id="plan-page" class="page hidden">
+    <h1>Here's your personalized plan</h1>
     <ul>
-      <li>Breakfast: Oats with fruits and chia seeds</li>
-      <li>Lunch: Grilled chicken with mixed salad</li>
-      <li>Snack: Almonds or a protein bar</li>
-      <li>Evening Snack: Green smoothie or Greek yogurt</li>
-      <li>Dinner: Steamed veggies with quinoa or brown rice</li>
-      <li>Exercise: 30 mins of cardio 3x a week</li>
+      <li>Breakfast: Smoothie with oats, banana & almond milk</li>
+      <li>Lunch: Grilled tofu/chicken with quinoa salad</li>
+      <li>Snack: Greek yogurt or nuts</li>
+      <li>Dinner: Steamed veggies + lentil soup</li>
+      <li>Evening Walk: 30 minutes brisk walk</li>
     </ul>
-    <button class="btn" onclick="nextPage('thankyou-page')">Next</button>
+    <button class="btn" onclick="nextPage('summary-page')">Next</button>
   </div>
 
-  <!-- Final Thank You Page -->
-  <div id="thankyou-page" class="hidden">
-    <h1>Thank you for sharing your info!</h1>
-    <p>More progress tracking features coming soon.</p>
-    <button class="btn" onclick="restart()">Start Over</button>
+  <!-- Summary Page -->
+  <div id="summary-page" class="page hidden">
+    <h1>Your Summary Dashboard</h1>
+    <canvas id="weeklyGraph" width="300" height="200"></canvas>
+    <div class="circle-container">
+      <div class="circle" id="water-ring"><span>Water</span></div>
+      <div class="circle" id="calories-ring"><span>Calories</span></div>
+      <div class="circle" id="exercise-ring"><span>Exercise</span></div>
+    </div>
+    <p class="bpm">Heart BPM: <span id="bpm">78</span></p>
   </div>
 
   <script src="script.js"></script>
